@@ -12,7 +12,7 @@ app.config['MONGO_URI'] = "mongodb+srv://admin:admin@cluster0.p7bgj.mongodb.net/
 mongo = PyMongo(app)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
 @app.route('/')
 def helloWorld():
