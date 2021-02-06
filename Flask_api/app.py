@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -16,8 +16,7 @@ if __name__ == "__main__":
 
 @app.route('/')
 def helloWorld():
-    message = "Hello World !"
-    return message
+    return render_template('pages/home.html')
 
 @app.route('/read')
 def readRepairs():
@@ -34,5 +33,11 @@ def readRepairs_one():
 @app.route('/read/<ville>')
 def readRepairs_ville(ville):
     repairs = mongo.db.coll1.find({"fields.ville": ville})
+    resp = dumps(repairs)
+    return resp
+
+@app.route('/read/<nom>')
+def readRepairs_nom(nom):
+    repairs = mongo.db.coll1.find({"fields.nom_repair_cafe": nom})
     resp = dumps(repairs)
     return resp
