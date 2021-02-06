@@ -30,3 +30,9 @@ def readRepairs_one():
     repairs = mongo.db.coll1.find_one()
     resp = dumps(repairs)
     return resp
+
+@app.route('/read/<ville>')
+def readRepairs_ville(ville):
+    repairs = mongo.db.coll1.find({"fields.ville": ville})
+    resp = dumps(repairs)
+    return resp
