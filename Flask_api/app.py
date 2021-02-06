@@ -24,3 +24,9 @@ def readRepairs():
     repairs = mongo.db.coll1.find()
     resp = dumps(repairs)
     return resp
+
+@app.route('/read_one')
+def readRepairs_one():
+    repairs = mongo.db.coll1.find_one()
+    resp = dumps(repairs)
+    return resp
