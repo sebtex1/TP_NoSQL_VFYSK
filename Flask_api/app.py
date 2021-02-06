@@ -22,7 +22,7 @@ def helloWorld():
 def readRepairs():
     repairs = mongo.db.coll1.find()
     resp = dumps(repairs)
-    return resp
+    return render_template('pages/table.html', jsonData = resp)
 
 @app.route('/read_one')
 def readRepairs_one():

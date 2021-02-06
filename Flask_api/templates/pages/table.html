@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tableau RepairCafe</title>
+    <h1>Tableau RepairCafe</h1>
+</head>
+<body> 
+<!-- -->
+{% block body %}
+<h1>corps</h1>
+<table id="table_complet">
+    <tr>
+        <th scope="col">ville</th>
+        <th scope="col">mail</th>
+        <th scope="col">inscription</th>
+        <th scope="col">jour periodicite</th>
+        <th scope="col">adresse</th>
+        <th scope="col">telephone</th>
+        <th scope="col">nom repair cafe</th>
+        <th scope="col">horaires</th>
+        <th scope="col">specialite</th>
+    </tr>
+    
+    {% for object in jsonData %}
+    <tr>
+    {% for obj1 in object.fields.ville() %}
+    <td>{{obj1}}</td>
+    {% endfor %}
+    </tr>
+</table>
+{% endblock %}
+</body>
+</html>
