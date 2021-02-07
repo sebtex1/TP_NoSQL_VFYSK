@@ -4,6 +4,7 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import jsonify, request 
 from werkzeug.security import generate_password_hash, check_password_hash
+import json
 
 app = Flask(__name__)
 
@@ -20,9 +21,10 @@ def helloWorld():
 
 @app.route('/read')
 def readRepairs():
-    repairs = mongo.db.coll1.find()
-    resp = dumps(repairs)
-    return resp
+    request = mongo.db.coll1.find({}, {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0})
+    resp = dumps(request)
+    jsonData = json.loads(resp)
+    return render_template('pages/read.html', jsonData=jsonData, test=type(jsonData))
 
 @app.route('/read_one')
 def readRepairs_one():

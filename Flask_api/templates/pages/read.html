@@ -1,0 +1,49 @@
+{% extends  'layouts/default.html' %}
+{% block body %}
+    <div class="container-fluid">    
+
+        <table class="table table-dark table-striped">
+            
+            <thead>                
+              <tr>
+                <th>Ville</th>
+                <th>Page FB</th>
+                <th>Mail</th>
+                <th>Inscription</th>
+                <th>jour_periodicite_dans_le_mois</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>nom_repair_cafe</th>
+                <th>horaire</th>
+                <th>lieu</th>
+                <th>geolocalisation</th>
+                <th>specialite</th>
+                <th>cp</th>
+                <th>periodicite</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for data in jsonData %}
+              <tr>
+                <td> {{data.fields.ville}}</td>
+                <td> {{data.fields.page_fb_site}}</td>
+                <td> {{data.fields.mail}}</td>
+                <td> {{data.fields.inscription}}</td>
+                <td> {{data.fields.jour_periodicite_dans_le_mois}}</td>
+                <td> {{data.fields.adresse}}</td>
+                <td> {{data.fields.telephone}}</td>
+                <td> {{data.fields.nom_repair_cafe}}</td>
+                <td> {{data.fields.horaire}}</td>
+                <td> {{data.fields.lieu}}</td>
+                <td> {{data.fields.geolocalisation}}</td>
+                <td> {{data.fields.specialite}}</td>
+                <td> {{data.fields.cp}}</td>
+                <td> {{data.fields.periodicite}}</td>
+              </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+
+        
+    </div>
+{% endblock %}
