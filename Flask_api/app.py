@@ -3,7 +3,7 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import jsonify, request 
-from werkzeug.security import generate_password_hash, check_password_hash
+import json 
 
 app = Flask(__name__)
 
@@ -20,32 +20,33 @@ def helloWorld():
 
 @app.route('/read')
 def readRepairs():
-    repairs = mongo.db.coll1.find()
-    resp = dumps(repairs)
-    return resp
+    request = mongo.db.coll1.find({}, {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0})
+    resp = dumps(request)
+    jsonData = json.loads(resp)
+    return render_template('pages/read.html', jsonData=jsonData, test=type(jsonData))
 
-@app.route('/read_one')
+@app.route('/readOne')
 def readRepairs_one():
-    repairs = mongo.db.coll1.find_one()
-    resp = dumps(repairs)
-    return resp
-
-@app.route('/read/<ville>')
-def readRepairs_ville(ville):
-    repairs = mongo.db.coll1.find({"fields.ville": ville})
-    resp = dumps(repairs)
+    request = mongo.db.coll1.find_one({}, {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0})
+    resp = dumps(request)
     return resp
 
 @app.route('/read/aggregate')
 def aggregate():
-    repairs = mongo.db.coll1.aggregate([{"$addFields": {"results": {"$regexFind": {"input": "$fields.specialite", "regex": "Couture|Informatique" }}}}])
-    resp = dumps(repairs)
-    return resp 
+    match = ""
+    ville = request.args.get('ville')
+    inscription = request.args.get('inscription')
 
-@app.route('/read/aggregate1')
-def aggregate1():
-    varMatch = {"$match": {"fields.specialite": {"$regex":"Informatique"}}}
+    if ville != "":
+        match = {"fields.ville": {"$regex": ville }}
+
+    if inscription != "":
+        match = {"fields.inscription": {"$regex": inscription.capitalize() }}
+
+    varMatch = {"$match": match }
+    varProject = {"$project": {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0}}
     varSort = {"$sort": {"nom_repair_cafe": 1}}
-    repairs = mongo.db.coll1.aggregate([varMatch, varSort ])
-    resp = dumps(repairs)
-    return resp
+    aggre = mongo.db.coll1.aggregate([varMatch, varProject, varSort])
+    resp = dumps(aggre)
+    return render_template('pages/read.html', result=resp)
+
