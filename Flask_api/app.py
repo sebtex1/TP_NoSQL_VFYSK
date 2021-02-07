@@ -38,7 +38,7 @@ def readRepairs_ville(ville):
 
 @app.route('/read/aggregate')
 def aggregate():
-    repairs = mongo.db.coll1.aggregate([{"$addFields": {"results": {"$regexFind": {"input": "$fields.specialite", "regex": "Couture|Informatique" }}}}, varProject ])
+    repairs = mongo.db.coll1.aggregate([{"$addFields": {"results": {"$regexFind": {"input": "$fields.specialite", "regex": "Couture|Informatique" }}}}])
     resp = dumps(repairs)
     return resp 
 
@@ -46,6 +46,6 @@ def aggregate():
 def aggregate1():
     varMatch = {"$match": {"fields.specialite": {"$regex":"Informatique"}}}
     varSort = {"$sort": {"nom_repair_cafe": 1}}
-    repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort ])
+    repairs = mongo.db.coll1.aggregate([varMatch, varSort ])
     resp = dumps(repairs)
     return resp
