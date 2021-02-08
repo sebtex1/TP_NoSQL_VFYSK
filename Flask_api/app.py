@@ -16,6 +16,8 @@ if __name__ == "__main__":
     app.run(debug=False)
 
 @app.route('/')
+
+
 @app.route('/read/aggregate')
 def aggregate():
 
@@ -63,3 +65,10 @@ def aggregate():
     resp = dumps(repairs)
     jsonData = json.loads(resp)
     return render_template('pages/home.html', jsonData=jsonData)
+
+@app.route('/search')
+
+def readRepairs():
+    request = mongo.db.coll1.find({}, {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0})
+    resp = dumps(request)
+    return render_template('pages/recherche.html')
