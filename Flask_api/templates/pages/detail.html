@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <th>Mail :</th>
-                    <td>{{data.fields.mail}}</td>
+                    <td><a href="mailto:{{data.fields.mail}}">{{data.fields.mail}}</a></td>
             </tr>
             <tr>
                 <th>Adresse :</th>
@@ -46,7 +46,7 @@
             </tr>   
             <tr>
                 <th>Page FB :</th>
-                    <td> {{data.fields.page_fb_site}}</td>
+                    <td><a href="{{data.fields.page_fb_site}}" target="_blank"> {{data.fields.page_fb_site}} </a></td>
             </tr>    
             <tr>
                 <th>Inscription :</th>
@@ -66,7 +66,7 @@
             </tr>    
             <tr>
                 <th>Géolocalisation :</th>
-                    <td> {{data.fields.geolocalisation}}</td>
+                    <td><a href="https://www.google.com/maps/search/{{data.fields.geolocalisation[0]}}+{{data.fields.geolocalisation[1]}}" target="_blank">{{data.fields.geolocalisation}}</a></td>
             </tr>    
             <tr>
                 <th>Spécialité :</th>

@@ -76,7 +76,7 @@ def readRepairs():
         cp = request.form['cp']
         spec = request.form['spec']
         inscrip = request.form['inscrip']
-        return redirect('/query?ville=' + ville)
+        return redirect('/query?')
 
 @app.route('/detail')
 def details():
