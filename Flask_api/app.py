@@ -77,3 +77,27 @@ def readRepairs():
         spec = request.form['spec']
         inscrip = request.form['inscrip']
         return redirect('/query?ville=' + ville)
+
+@app.route('/detail')
+def details():
+
+    matchList = {}
+    varMatch = {}
+
+    if request.args.get('nom'):
+        nom = request.args.get('nom')
+        matchList['fields.nom_repair_cafe']={'$regex':nom}
+    
+    if request.args.get('adresse'):
+        adresse = request.args.get('adresse')
+        matchList['fields.adresse']={'$regex':adresse}
+
+        
+    varMatch['$match']=matchList
+    varProject = {"$project": {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0}}
+    varSort = {"$sort": {"nom_repair_cafe": 1}}
+
+    repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort])
+    resp = dumps(repairs)
+    jsonData = json.loads(resp)
+    return render_template('pages/detail.html', jsonData=jsonData)
