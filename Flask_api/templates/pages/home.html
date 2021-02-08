@@ -6,8 +6,7 @@
   <meta charset="UTF-8">
   
     <title>home page </title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='pages/homestyle.css') }}" >
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 </head>
  <body>
@@ -31,6 +30,8 @@
     <option value="cp">
     <option value="specialité ">
   </datalist>
+
+  <a class="btn btn-primary" href="#">Accès au Formulaire</a>
   </div>
   
   <br>
@@ -62,6 +63,7 @@
               <td> {{data.fields.horaire}}</td>
               <td> {{data.fields.lieu}}</td>
               <td> {{data.fields.cp}}</td>
+              <td> <a class="btn btn-success" href="#">Détails</a> </td>
             </tr>
           </tbody>
           {% endfor %}
