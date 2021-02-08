@@ -44,24 +44,24 @@
           
           <thead>                
             <tr>
+              <th>Nom</th>
               <th>Ville</th>
               <th>Mail</th>
               <th>Adresse</th>
               <th>Téléphone</th>
-              <th>horaire</th>
-              <th>lieu</th>
-              <th>cp</th>
+              <th>Horaire</th>
+              <th>CP</th>
             </tr>
           </thead>
           <tbody>
               {% for data in jsonData %}
             <tr>
+              <td> {{data.fields.nom_repair_cafe}}</td>
               <td> {{data.fields.ville}}</td>
               <td> {{data.fields.mail}}</td>
               <td> {{data.fields.adresse}}</td>
               <td> {{data.fields.telephone}}</td>
               <td> {{data.fields.horaire}}</td>
-              <td> {{data.fields.lieu}}</td>
               <td> {{data.fields.cp}}</td>
               <td> <a class="btn btn-success" href="#">Détails</a> </td>
             </tr>
