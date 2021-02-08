@@ -18,8 +18,8 @@ if __name__ == "__main__":
 @app.route('/')
 
 
-@app.route('/read/aggregate')
-def aggregate():
+@app.route('/details')
+def details():
 
     matchList = {}
     varMatch = {}
