@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -16,7 +16,8 @@ if __name__ == "__main__":
     app.run(debug=False)
 
 @app.route('/')
-def readall():
+@app.route('/query')
+def aggregate():
 
     matchList = {}
     varMatch = {}
@@ -63,37 +64,16 @@ def readall():
     jsonData = json.loads(resp)
     return render_template('pages/home.html', jsonData=jsonData)
 
-@app.route('/search')
-
+@app.route('/search', methods=['GET', 'POST'])
 def readRepairs():
-    request = mongo.db.coll1.find({}, {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0})
-    resp = dumps(request)
-    return render_template('pages/recherche.html')
+    if request.method == 'GET':
+        return render_template('pages/recherche.html')
 
-
-
-
-@app.route('/details')
-def details():
-
-    matchList = {}
-    varMatch = {}
-
-    if request.args.get('nom'):
-        nom = request.args.get('nom')
-        matchList['fields.nom_repair_cafe']={'$regex':nom}
-    
-    if request.args.get('adresse'):
-        adresse = request.args.get('adresse')
-        matchList['fields.adresse']={'$regex':adresse}
-
-        
-    varMatch['$match']=matchList
-    varProject = {"$project": {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0}}
-    varSort = {"$sort": {"nom_repair_cafe": 1}}
-
-    repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort])
-    resp = dumps(repairs)
-    jsonData = json.loads(resp)
-    return render_template('pages/detail.html', jsonData=jsonData)
-
+    if "submit" in request.form:
+        nom = request.form['nom']
+        ville = request.form['ville']
+        adresse = request.form['adresse']
+        cp = request.form['cp']
+        spec = request.form['spec']
+        inscrip = request.form['inscrip']
+        return redirect('/query?ville=' + ville)

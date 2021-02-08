@@ -24,7 +24,7 @@
                    <div class="form-row">  
                      <div class="col-md-4 mb-3">
                           <b><label for="nom">Entrez le nom de repaire cafe</label></b>
-                          <input type="text" class="form-control" id="nomrepair" placeholder="Repair Café Halluin" required>
+                          <input name="nom" type="text" class="form-control" id="nomrepair" placeholder="Repair Café Halluin" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
                      </div>
@@ -32,15 +32,15 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                           <b><label for="ville">Ville</label></b>
-                          <input type="text" class="form-control" id="ville" placeholder="Halluin" required>
+                          <input name="ville" type="text" class="form-control" id="ville" placeholder="Halluin" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
                         </div>
                     </div> 
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                          <b><label for="Adresse">Addresse</Address></label></b>
-                          <input type="text" class="form-control" id="Adresse" placeholder="78 rue Gustave Desmettre" required>
+                          <b><label for="Adresse">Adresse</label></b>
+                          <input name="adresse" type="text" class="form-control" id="Adresse" placeholder="78 rue Gustave Desmettre" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
                         </div>
@@ -48,7 +48,7 @@
                     <div class="form-row">
                       <div class="col-md-4 mb-3">
                         <b><label for="specialite">Spécialité</label></b>
-                        <input type="text" class="form-control" id="specialite" placeholder="Informatique" required>
+                        <input name="spec" type="text" class="form-control" id="specialite" placeholder="Informatique" required>
                         <div class="valid-feedback">Ok !</div>
                         <div class="invalid-feedback">Valeur incorrecte</div>
                       </div>
@@ -56,7 +56,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                           <b><label for="cp">Code postal</label></b>
-                          <input type="number" class="form-control" id="cp" placeholder="59650" required>
+                          <input name="cp" type="number" class="form-control" id="cp" placeholder="59650" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
                         </div>
@@ -65,7 +65,7 @@
                   <div class="col-md-4 mb-3">
                     <b><label for="inscription">Inscription  </label></b>
                    
-                  <select class="form-select" aria-label="Default select example">
+                  <select name="inscrip" class="form-select" aria-label="Default select example">
                    
                   
                     <option value="1">oui </option>
@@ -74,7 +74,7 @@
                   </select>
                   </div>
                  </div> 
-                 <button class="btn btn-secondary" type="submit">Recherche</button>
+                 <button name="submit" class="btn btn-secondary" type="submit">Recherche</button>
               
              </form>
          </div>

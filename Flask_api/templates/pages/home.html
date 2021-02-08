@@ -1,39 +1,22 @@
-{% extends  'layouts/default.html' %}
+{% extends 'layouts/default.html' %}
 {% block body %}
-
 <head>
   <!-- href="/static/assets/style.css"-->
   <meta charset="UTF-8">
-  
-    <title>home page </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
+  <title>home page </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
- <body>
-  
- 
-  
- 
-<div class="a-la-une">
-  <div class="container">
-      <h1 class="text-center">Repair cafes</h1>                                                                                                                       
-  </div>
-  <div  class="container-fluid">
-
-
-  
-
-  <a class="btn btn-secondary" href="/search">Accès au Formulaire</a>
-  </div>
-  
-  <br>
-  
- 
-
-  <div class="container-fluid">    
-
+<body>
+  <div class="a-la-une">
+    <div class="container">
+      <h1 class="text-center">Repair cafes</h1>
+    </div>
+    <div class="container-fluid">
+      <a class="btn btn-secondary" href="/search">Accès au Formulaire</a>
+    </div>
+    <br>
+    <div class="container-fluid">
       <table class="table table-dark table-striped">
-          
           <thead>                
             <tr>
               <th>Nom</th>
@@ -55,18 +38,12 @@
               <td> {{data.fields.telephone}}</td>
               <td> {{data.fields.horaire}}</td>
               <td> {{data.fields.cp}}</td>
-              <td> <a class="btn btn-light" href="/details?adresse={{data.fields.adresse}}">Détails</a> </td>
+              <td> <a class="btn btn-light" href="/query?adresse={{data.fields.adresse}}">Détails</a> </td>
             </tr>
           </tbody>
           {% endfor %}
       </table>
-
-      
-  </div>
-
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-   
- </body>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
 {% endblock %}
