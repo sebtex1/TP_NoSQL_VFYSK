@@ -32,22 +32,49 @@ def readRepairs_one():
     resp = dumps(repairs)
     return resp
 
-@app.route('/read/<ville>')
-def readRepairs_ville(ville):
-    repairs = mongo.db.coll1.find({"fields.ville": ville})
-    resp = dumps(repairs)
-    return resp
-
 @app.route('/read/aggregate')
 def aggregate():
-    repairs = mongo.db.coll1.aggregate([{"$addFields": {"results": {"$regexFind": {"input": "$fields.specialite", "regex": "Couture|Informatique" }}}}, varProject ])
-    resp = dumps(repairs)
-    return resp 
 
-@app.route('/read/aggregate1')
-def aggregate1():
-    varMatch = {"$match": {"fields.specialite": {"$regex":"Informatique"}}}
+    matchList = {}
+    varMatch = {}
+
+    if request.args.get('ville'):
+        ville = request.args.get('ville')
+        matchList['fields.ville']= {'$regex':ville.capitalize()}
+
+    if request.args.get('inscription'):
+        inscription = request.args.get('inscription')
+        matchList['fields.inscription']={'$regex':inscription.capitalize()}
+
+    if request.args.get('adresse'):
+        adresse = request.args.get('adresse')
+        matchList['fields.adresse']={'$regex':adresse}
+        
+    if request.args.get('specialite'):
+        specialite = request.args.get('specialite')
+        matchList['fields.specialite']= {'$regex':specialite}
+
+    if request.args.get('cp'):
+        cp = request.args.get('cp')
+        matchList['fields.cp']={'$regex':cp}
+    
+    if request.args.get('periodicite'):
+        periodicite = request.args.get('periodicite')
+        matchList['fields.periodicite']={'$regex':periodicite}
+
+    if request.args.get('horaire'):
+        horaire = request.args.get('horaire')
+        matchList['fields.horaire']={'$regex':horaire}
+
+    if request.args.get('nom'):
+        nom = request.args.get('nom')
+        matchList['fields.nom_repair_cafe']={'$regex':nom}
+
+        
+    varMatch['$match']=matchList
+    varProject = {"$project": {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0}}
     varSort = {"$sort": {"nom_repair_cafe": 1}}
-    repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort ])
+
+    repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort])
     resp = dumps(repairs)
     return resp
