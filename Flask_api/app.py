@@ -16,12 +16,6 @@ if __name__ == "__main__":
     app.run(debug=False)
 
 @app.route('/')
-def helloWorld():
-    request = mongo.db.coll1.find({}, {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0})
-    resp = dumps(request)
-    jsonData = json.loads(resp)
-    return render_template('pages/home.html', jsonData=jsonData)
-
 @app.route('/read/aggregate')
 def aggregate():
 
