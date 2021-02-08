@@ -21,17 +21,9 @@
   <div  class="container-fluid">
 
 
-  <label for="exampleDataList" class="form-label">Recherche : </label>
-  <input class="formcontrol" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-  <datalist id="datalistOptions">
-    <option value="Ville">
-    <option value="Adresse">
-    <option value="lieu">
-    <option value="cp">
-    <option value="specialité ">
-  </datalist>
+  
 
-  <a class="btn btn-primary" href="#">Accès au Formulaire</a>
+  <a class="btn btn-secondary" href="/search">Accès au Formulaire</a>
   </div>
   
   <br>
@@ -63,7 +55,7 @@
               <td> {{data.fields.telephone}}</td>
               <td> {{data.fields.horaire}}</td>
               <td> {{data.fields.cp}}</td>
-              <td> <a class="btn btn-success" href="#">Détails</a> </td>
+              <td> <a class="btn btn-light" href="#">Détails</a> </td>
             </tr>
           </tbody>
           {% endfor %}
