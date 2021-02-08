@@ -22,19 +22,6 @@ def helloWorld():
     jsonData = json.loads(resp)
     return render_template('pages/home.html', jsonData=jsonData)
 
-@app.route('/read')
-def readRepairs():
-    request = mongo.db.coll1.find({}, {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0})
-    resp = dumps(request)
-    jsonData = json.loads(resp)
-    return render_template('pages/read.html', jsonData=jsonData)
-
-@app.route('/read_one')
-def readRepairs_one():
-    repairs = mongo.db.coll1.find_one()
-    resp = dumps(repairs)
-    return resp
-
 @app.route('/read/aggregate')
 def aggregate():
 
@@ -80,4 +67,5 @@ def aggregate():
 
     repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort])
     resp = dumps(repairs)
-    return resp
+    jsonData = json.loads(resp)
+    return render_template('pages/home.html', jsonData=jsonData)
