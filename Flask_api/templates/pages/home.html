@@ -1,6 +1,78 @@
 {% extends  'layouts/default.html' %}
 {% block body %}
-<div>
-<h1>hello wolrd !</h1>
-</div>
+
+<head>
+  <!-- href="/static/assets/style.css"-->
+  <meta charset="UTF-8">
+  
+    <title>home page </title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='pages/homestyle.css') }}" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+ <body>
+  
+ 
+  
+ 
+<div class="a-la-une">
+  <div class="container">
+      <h1 class="text-center">Repair cafes</h1>                                                                                                                       
+  </div>
+  <div  class="container-fluid">
+
+
+  <label for="exampleDataList" class="form-label">Recherche : </label>
+  <input class="formcontrol" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+  <datalist id="datalistOptions">
+    <option value="Ville">
+    <option value="Adresse">
+    <option value="lieu">
+    <option value="cp">
+    <option value="specialité ">
+  </datalist>
+  </div>
+  
+  <br>
+  
+ 
+
+  <div class="container-fluid">    
+
+      <table class="table table-dark table-striped">
+          
+          <thead>                
+            <tr>
+              <th>Ville</th>
+              <th>Mail</th>
+              <th>Adresse</th>
+              <th>Téléphone</th>
+              <th>horaire</th>
+              <th>lieu</th>
+              <th>cp</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for data in jsonData %}
+            <tr>
+              <td> {{data.fields.ville}}</td>
+              <td> {{data.fields.mail}}</td>
+              <td> {{data.fields.adresse}}</td>
+              <td> {{data.fields.telephone}}</td>
+              <td> {{data.fields.horaire}}</td>
+              <td> {{data.fields.lieu}}</td>
+              <td> {{data.fields.cp}}</td>
+            </tr>
+          </tbody>
+          {% endfor %}
+      </table>
+
+      
+  </div>
+
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   
+ </body>
 {% endblock %}
