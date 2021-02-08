@@ -14,15 +14,16 @@
       <div class="a-la-une">
         <div class="container">
             <h1 class="text-center">Repair cafes</h1>                                                                                                                       
-        </div>
+        
    
         <div class="container-">
           <h1>Formulaires</h1>
-          <form class="needs-validation" novalidate>
+          <form method="post" class="needs-validation" novalidate>
+           
                 <legend>Replier le formulaire pour faciliter la recherche</legend>
                    <div class="form-row">  
                      <div class="col-md-4 mb-3">
-                          <label for="nom">Entrez le nom de repaire cafe</label>
+                          <b><label for="nom">Entrez le nom de repaire cafe</label></b>
                           <input type="text" class="form-control" id="nomrepair" placeholder="Repair Café Halluin" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
@@ -30,7 +31,7 @@
                      </div>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                          <label for="ville">Ville</label>
+                          <b><label for="ville">Ville</label></b>
                           <input type="text" class="form-control" id="ville" placeholder="Halluin" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
@@ -38,39 +39,45 @@
                     </div> 
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                          <label for="Adresse">Address</Address></label>
+                          <b><label for="Adresse">Addresse</Address></label></b>
                           <input type="text" class="form-control" id="Adresse" placeholder="78 rue Gustave Desmettre" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
                         </div>
                     </div> 
                     <div class="form-row">
+                      <div class="col-md-4 mb-3">
+                        <b><label for="specialite">Spécialité</label></b>
+                        <input type="text" class="form-control" id="specialite" placeholder="Informatique" required>
+                        <div class="valid-feedback">Ok !</div>
+                        <div class="invalid-feedback">Valeur incorrecte</div>
+                      </div>
+                  </div> 
+                    <div class="form-row">
                         <div class="col-md-4 mb-3">
-                          <label for="cp">Code postal</label>
+                          <b><label for="cp">Code postal</label></b>
                           <input type="number" class="form-control" id="cp" placeholder="59650" required>
                           <div class="valid-feedback">Ok !</div>
                           <div class="invalid-feedback">Valeur incorrecte</div>
                         </div>
                     </div>
-                    <fieldset class="row mb-3">
-                      <legend class="col-form-label col-sm-2 pt-0">Inscription</legend>
-                        <div class="col-sm-10">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                        <label class="form-check-label" for="gridRadios1">
-                          Oui
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                        <label class="form-check-label" for="gridRadios2">
-                          Non 
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-                 <button class="btn btn-primary" type="submit">Recherche</button>
+                 <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <b><label for="inscription">Inscription  </label></b>
+                   
+                  <select class="form-select" aria-label="Default select example">
+                   
+                  
+                    <option value="1">oui </option>
+                    <option value="2">Non </option>
+                    <option value="3"> Autre </option>
+                  </select>
+                  </div>
+                 </div> 
+                 <button class="btn btn-secondary" type="submit">Recherche</button>
+              
              </form>
+         </div>
          </div>
         
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
