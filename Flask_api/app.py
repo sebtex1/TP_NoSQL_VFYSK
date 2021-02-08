@@ -69,14 +69,38 @@ def readRepairs():
     if request.method == 'GET':
         return render_template('pages/recherche.html')
 
+
+
     if "submit" in request.form:
-        nom = request.form['nom']
-        ville = request.form['ville']
-        adresse = request.form['adresse']
-        cp = request.form['cp']
-        spec = request.form['spec']
-        inscrip = request.form['inscrip']
-        return redirect('/query?')
+
+        qry =""
+
+        if request.form['nom']:
+            nom = request.form['nom']
+            qry = f"{qry}nom={nom}&"
+
+        if request.form['ville']:
+            ville = request.form['ville']
+            qry = f"{qry}ville={ville}&"
+        
+        if request.form['adresse']:
+            adresse = request.form['adresse']
+            qry = f"{qry}adresse={adresse}&"
+        
+        if request.form['cp']:
+            cp = request.form['cp']
+            qry = f"{qry}cp={cp}&"
+        
+        if request.form['spec']:
+            spec = request.form['spec']
+            qry = f"{qry}specialite{spec}&"
+        
+        if request.form['inscrip']:
+            inscrip = request.form['inscrip']
+            qry = f"{qry}inscription={inscrip}&"
+
+
+        return redirect('/query?' + qry)
 
 @app.route('/detail')
 def details():
