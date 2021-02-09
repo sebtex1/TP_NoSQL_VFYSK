@@ -18,10 +18,9 @@ if __name__ == "__main__":
 @app.route('/')
 @app.route('/query')
 def aggregate():
-
     matchList = {}
     varMatch = {}
-    #Creer une requête qui fait partie de notre qry qui envoyait les données au serveur sous forme non chiffrée
+    # Créer une requête qui fait partie de notre query qui envoie les données au serveur sous forme non chiffrée
     if request.args.get('ville'):
         ville = request.args.get('ville')
         matchList['fields.ville']= {'$regex':ville.capitalize()}
@@ -54,7 +53,7 @@ def aggregate():
         nom = request.args.get('nom')
         matchList['fields.nom_repair_cafe']={'$regex':nom}
 
-    #on a défini l'agrégation pour facilité nous recherche sur notre base de données    
+    # On défini l'agrégation pour faciliter les recherches
     varMatch['$match']=matchList
     varProject = {"$project": {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0}}
     varSort = {"$sort": {"nom_repair_cafe": 1}}
@@ -62,7 +61,7 @@ def aggregate():
     repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort])
     resp = dumps(repairs)
     jsonData = json.loads(resp)
-    #renvoyer le résultat dans la page html
+    # Renvoye le résultat dans la page html
     return render_template('pages/home.html', jsonData=jsonData)
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -76,7 +75,7 @@ def readRepairs():
         return render_template('pages/recherche.html', dataVille=jsonVille)
     
     
-    #Reuperé les données du formulaire en fonction de son id 
+    # Recuperé les données du formulaire si submit est exécuter
     if "submit" in request.form:
         qry =""
 
@@ -113,12 +112,11 @@ def details():
     matchList = {}
     varMatch = {}
     
-    #Verifie si le term  existe dans l'url
+    # Vérifie si le terme existe dans l'url
     if request.args.get('adresse'):
         adresse = request.args.get('adresse')
         matchList['fields.adresse']={'$regex':adresse}
 
-        
     varMatch['$match']=matchList
     varProject = {"$project": {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0}}
     varSort = {"$sort": {"nom_repair_cafe": 1}}
