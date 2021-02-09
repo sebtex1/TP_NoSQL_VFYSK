@@ -6,58 +6,57 @@
   <div class="container-">
     <h1>Formulaires</h1>
     <form method="post" class="needs-validation" novalidate>
-      
-          <legend>Replier le formulaire pour faciliter la recherche</legend>
-              <div class="form-row">  
-                <div class="col-md-4 mb-3">
-                    <b><label for="nom">Entrez le nom de repaire cafe</label></b>
-                    <input name="nom" type="text" class="form-control" id="nomrepair" placeholder="Repair Café Halluin">
-                </div>
-                </div>
-              <div class="form-row">
-                  <div class="col-md-4 mb-3">
-                    <b><label for="ville">Ville</label></b>
-                    <br>
-                    <select name="ville" class="form-select" id="ville" aria-label="Default select example">
-                      <option value=""></option>
-                      {% for data in dataVille %}
-                      <option value="{{data._id}}">{{data._id}}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-              </div> 
-              <div class="form-row">
-                  <div class="col-md-4 mb-3">
-                    <b><label for="Adresse">Adresse</label></b>
-                    <input name="adresse" type="text" class="form-control" id="Adresse" placeholder="78 rue Gustave Desmettre">
-                  </div>
-              </div> 
-              <div class="form-row">
-                <div class="col-md-4 mb-3">
-                  <b><label for="specialite">Spécialité</label></b>
-                  <input name="spec" type="text" class="form-control" id="specialite" placeholder="Informatique">
-                </div>
-            </div> 
-              <div class="form-row">
-                  <div class="col-md-4 mb-3">
-                    <b><label for="cp">Code postal</label></b>
-                    <input name="cp" type="number" class="form-control" id="cp" placeholder="59650">
-                  </div>
-              </div>
-            <div class="form-row">
-            <div class="col-md-4 mb-3">
-              <b><label for="inscription">Inscription  </label></b>
-              <br>
+      <legend>Replier le formulaire pour faciliter la recherche</legend>
+        <div class="form-row">  
+          <div class="col-md-4 mb-3">
+            <b><label for="nom">Entrez le nom de repaire cafe</label></b>
+            <input name="nom" type="text" class="form-control" id="nomrepair" placeholder="Repair Café Halluin">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <b><label for="ville">Ville</label></b>
+            <br>
+              <select name="ville" class="form-select" id="ville" aria-label="Default select example">
+                <option value=""></option>
+                {% for data in dataVille %}
+                  <option value="{{data._id}}">{{data._id}}</option>
+                {% endfor %}
+              </select>
+          </div>
+        </div> 
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <b><label for="Adresse">Adresse</label></b>
+            <input name="adresse" type="text" class="form-control" id="Adresse" placeholder="78 rue Gustave Desmettre">
+          </div>
+        </div> 
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <b><label for="specialite">Spécialité</label></b>
+            <input name="spec" type="text" class="form-control" id="specialite" placeholder="Informatique">
+          </div>
+        </div> 
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <b><label for="cp">Code postal</label></b>
+            <input name="cp" type="number" class="form-control" id="cp" placeholder="59650">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <b><label for="inscription">Inscription  </label></b>
+            <br>
             <select name="inscrip" class="form-select" aria-label="Default select example">
               <option value=""> </option>
               <option value="Oui">Oui </option>
               <option value="Non"> Non </option>
             </select>
-            </div>
-            </div> 
-            <button name="submit" class="btn btn-secondary" type="submit">Recherche</button>              
-        </form>
-    </div>
-    </div>
-
+          </div>
+        </div> 
+        <button name="submit" class="btn btn-success" type="submit">Recherche</button>       
+        <button class="btn btn-secondary" class="btn btn-dark" href="/">Retour</button>
+    </form>
+  </div>
+</div>
 {% endblock %}
