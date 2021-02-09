@@ -4,8 +4,10 @@ from bson.json_util import dumps
 from flask import request 
 import json
 
+#création de l'objet de classe Flask   
 app = Flask(__name__)
 
+#connexion à la base de données à distance à l’aide de l'URL
 app.config['MONGO_URI'] = "mongodb+srv://admin:admin@cluster0.p7bgj.mongodb.net/RepairCafe"
 
 mongo = PyMongo(app)
@@ -19,7 +21,7 @@ def aggregate():
 
     matchList = {}
     varMatch = {}
-
+    #Creer une requête qui fait partie de notre qry qui envoyait les données au serveur sous forme non chiffrée
     if request.args.get('ville'):
         ville = request.args.get('ville')
         matchList['fields.ville']= {'$regex':ville.capitalize()}
@@ -52,7 +54,7 @@ def aggregate():
         nom = request.args.get('nom')
         matchList['fields.nom_repair_cafe']={'$regex':nom}
 
-        
+    #on a défini l'agrégation pour facilité nous recherche sur notre base de données    
     varMatch['$match']=matchList
     varProject = {"$project": {"_id": 0, "datasetid": 0, "recordid": 0, "geometry": 0, "record_timestamp": 0, "fields.ville0": 0}}
     varSort = {"$sort": {"nom_repair_cafe": 1}}
@@ -60,6 +62,7 @@ def aggregate():
     repairs = mongo.db.coll1.aggregate([varMatch, varProject, varSort])
     resp = dumps(repairs)
     jsonData = json.loads(resp)
+    #renvoyer le résultat dans la page html
     return render_template('pages/home.html', jsonData=jsonData)
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -71,7 +74,9 @@ def readRepairs():
     if request.method == 'GET':
         jsonVille = json.loads(resp)
         return render_template('pages/recherche.html', dataVille=jsonVille)
-
+    
+    
+    #Reuperé les données du formulaire en fonction de son id 
     if "submit" in request.form:
         qry =""
 
@@ -108,6 +113,7 @@ def details():
     matchList = {}
     varMatch = {}
     
+    #Verifie si le term  existe dans l'url
     if request.args.get('adresse'):
         adresse = request.args.get('adresse')
         matchList['fields.adresse']={'$regex':adresse}
