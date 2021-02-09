@@ -17,7 +17,7 @@
           <div class="col-md-4 mb-3">
             <b><label for="ville">Ville</label></b>
             <br>
-              <select name="ville" class="form-select" id="ville" aria-label="Default select example">
+              <select name="ville" class="form-control" id="ville" aria-label="Default select example">
                 <option value=""></option>
                 {% for data in dataVille %}
                   <option value="{{data._id}}">{{data._id}}</option>
@@ -34,7 +34,23 @@
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <b><label for="specialite">Spécialité</label></b>
-            <input name="spec" type="text" class="form-control" id="specialite" placeholder="Informatique">
+            <select name="spec" class="form-control" id="specialite" aria-label="Default select example">
+              <option value=""></option>
+              <option value="Audio">Audiovisuel</option>
+              <option value="Bijoux">Bijoux</option>
+              <option value="Couture">Couture</option>
+              <option value="Electromécanique">Electromécanique</option>
+              <option value="Electroménager">Electroménager</option>
+              <option value="Electronique">Electronique</option>
+              <option value="Informatique">Informatique</option>
+              <option value="Machine à coudre">Machine à coudre</option>
+              <option value="Méca">Mécanique</option>
+              <option value="Meuble">Meuble</option>
+              <option value="Montres">Montres</option>
+              <option value="Multimédia">Multimédia</option>
+              <option value="Petits Meubles">Petits Meubles</option>
+              <option value="Vélos">Vélos</option>
+            </select>
           </div>
         </div> 
         <div class="form-row">
@@ -47,7 +63,7 @@
           <div class="col-md-4 mb-3">
             <b><label for="inscription">Inscription  </label></b>
             <br>
-            <select name="inscrip" class="form-select" aria-label="Default select example">
+            <select name="inscrip" class="form-control" aria-label="Default select example">
               <option value=""> </option>
               <option value="Oui">Oui </option>
               <option value="Non"> Non </option>
