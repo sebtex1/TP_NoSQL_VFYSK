@@ -64,16 +64,15 @@ def aggregate():
 
 @app.route('/search', methods=['GET', 'POST'])
 def readRepairs():
+    varGroup = {"$group":{"_id":"$fields.ville"}}
+    varSort = {"$sort": {"_id": 1}}
+    repairs = mongo.db.coll1.aggregate([varGroup, varSort])
+    resp = dumps(repairs)
     if request.method == 'GET':
-            varGroup = {"$group":{"_id":"$fields.ville"}}
-            varSort = {"$sort": {"_id": 1}}
-            repairs = mongo.db.coll1.aggregate([varGroup, varSort])
-            resp = dumps(repairs)
-            jsonData = json.loads(resp)
-    return render_template('pages/recherche.html', jsonData=jsonData)
+        jsonVille = json.loads(resp)
+        return render_template('pages/recherche.html', dataVille=jsonVille)
 
     if "submit" in request.form:
-
         qry =""
 
         if request.form['nom']:

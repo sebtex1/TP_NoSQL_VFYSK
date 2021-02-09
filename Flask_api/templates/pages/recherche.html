@@ -20,7 +20,7 @@
                     <br>
                     <select name="ville" class="form-select" id="ville" aria-label="Default select example">
                       <option value=""></option>
-                      {% for data in jsonData %}
+                      {% for data in dataVille %}
                       <option value="{{data._id}}">{{data._id}}</option>
                       {% endfor %}
                     </select>
