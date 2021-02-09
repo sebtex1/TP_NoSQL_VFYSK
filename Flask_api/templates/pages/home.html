@@ -1,49 +1,39 @@
 {% extends 'layouts/default.html' %}
 {% block body %}
-<head>
-  <!-- href="/static/assets/style.css"-->
-  <meta charset="UTF-8">
-  <title>home page </title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="a-la-une">
-    <div class="container">
-      <h1 class="text-center">Repair cafes</h1>
-    </div>
-    <div class="container-fluid">
-      <a class="btn btn-secondary" href="/search">Accès au Formulaire</a>
-    </div>
-    <br>
-    <div class="container-fluid">
-      <table class="table table-dark table-striped">
-          <thead>                
-            <tr>
-              <th>Nom</th>
-              <th>Ville</th>
-              <th>Mail</th>
-              <th>Adresse</th>
-              <th>Téléphone</th>
-              <th>Horaire</th>
-              <th>CP</th>
-            </tr>
-          </thead>
-          <tbody>
-              {% for data in jsonData %}
-            <tr>
-              <td> {{data.fields.nom_repair_cafe}}</td>
-              <td> {{data.fields.ville}}</td>
-              <td> {{data.fields.mail}}</td>
-              <td> {{data.fields.adresse}}</td>
-              <td> {{data.fields.telephone}}</td>
-              <td> {{data.fields.horaire}}</td>
-              <td> {{data.fields.cp}}</td>
-              <td> <a class="btn btn-light" href="/detail?adresse={{data.fields.adresse}}">Détails</a> </td>
-            </tr>
-          </tbody>
-          {% endfor %}
-      </table>
-    </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
+<div class="a-la-une">
+  <div class="container">
+    <h1 class="text-center">Repair cafes</h1>
+  </div>
+  <div class="container-fluid">
+    <a class="btn btn-secondary" href="/search">Faire une recherche</a>
+  </div>
+  <br>
+  <div class="container-fluid">
+    <table class="table table-dark table-striped">
+      <thead>                
+        <tr>
+          <th>Nom</th>
+          <th>Ville</th>
+          <th>Adresse</th>
+          <th>Téléphone</th>
+          <th>Horaire</th>
+          <th>Spécialité</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in jsonData %}
+          <tr>
+            <td> <a href="/detail?adresse={{data.fields.adresse}}"> {{data.fields.nom_repair_cafe}}</a></td>
+            <td> {{data.fields.ville}}</td>
+            <td> {{data.fields.adresse}}</td>
+            <td> {{data.fields.telephone}}</td>
+            <td> {{data.fields.horaire}}</td>
+            <td>{{data.fields.specialite}} </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 {% endblock %}
