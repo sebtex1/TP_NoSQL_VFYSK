@@ -23,17 +23,16 @@
       <tbody>
         {% for data in jsonData %}
           <tr>
-            <td> <a href="/detail?adresse={{data.fields.adresse}}"> {{data.fields.nom_repair_cafe}}</a></td>
-            <td> {{data.fields.ville}}</td>
-            <td> {{data.fields.adresse}}</td>
-            <td> {{data.fields.telephone}}</td>
-            <td> {{data.fields.horaire}}</td>
-            <td>{{data.fields.specialite}} </td>
+            <td><a href="/detail?adresse={{data.fields.adresse}}"> {{data.fields.nom_repair_cafe}}</a></td>
+            <td>{{data.fields.ville}}</td>
+            <td>{{data.fields.adresse}}</td>
+            <td>{{data.fields.telephone}}</td>
+            <td>{{data.fields.horaire}}</td>
+            <td>{{data.fields.specialite}}</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
 </div>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 {% endblock %}
