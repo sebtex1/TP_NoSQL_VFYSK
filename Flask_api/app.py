@@ -93,7 +93,7 @@ def readRepairs():
         
         if request.form['spec']:
             spec = request.form['spec']
-            qry = f"{qry}specialite{spec}&"
+            qry = f"{qry}specialite={spec}&"
         
         if request.form['inscrip']:
             inscrip = request.form['inscrip']
