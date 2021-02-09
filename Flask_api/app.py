@@ -36,7 +36,7 @@ def aggregate():
         
     if request.args.get('specialite'):
         specialite = request.args.get('specialite')
-        matchList['fields.specialite']= {'$regex':specialite}
+        matchList['fields.specialite']= {'$regex':specialite.capitalize()}
 
     if request.args.get('cp'):
         cp = request.args.get('cp')
@@ -67,9 +67,12 @@ def aggregate():
 @app.route('/search', methods=['GET', 'POST'])
 def readRepairs():
     if request.method == 'GET':
-        return render_template('pages/recherche.html')
-
-
+            varGroup = {"$group":{"_id":"$fields.ville"}}
+            varSort = {"$sort": {"_id": 1}}
+            repairs = mongo.db.coll1.aggregate([varGroup, varSort])
+            resp = dumps(repairs)
+            jsonData = json.loads(resp)
+    return render_template('pages/recherche.html', jsonData=jsonData)
 
     if "submit" in request.form:
 
@@ -107,10 +110,6 @@ def details():
 
     matchList = {}
     varMatch = {}
-
-    if request.args.get('nom'):
-        nom = request.args.get('nom')
-        matchList['fields.nom_repair_cafe']={'$regex':nom}
     
     if request.args.get('adresse'):
         adresse = request.args.get('adresse')

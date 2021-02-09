@@ -17,7 +17,13 @@
               <div class="form-row">
                   <div class="col-md-4 mb-3">
                     <b><label for="ville">Ville</label></b>
-                    <input name="ville" type="text" class="form-control" id="ville" placeholder="Halluin">
+                    <br>
+                    <select name="ville" class="form-select" id="ville" aria-label="Default select example">
+                      <option value=""></option>
+                      {% for data in jsonData %}
+                      <option value="{{data._id}}">{{data._id}}</option>
+                      {% endfor %}
+                    </select>
                   </div>
               </div> 
               <div class="form-row">
@@ -41,10 +47,8 @@
             <div class="form-row">
             <div class="col-md-4 mb-3">
               <b><label for="inscription">Inscription  </label></b>
-              
+              <br>
             <select name="inscrip" class="form-select" aria-label="Default select example">
-              
-            
               <option value=""> </option>
               <option value="Oui">Oui </option>
               <option value="Non"> Non </option>
